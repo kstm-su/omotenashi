@@ -1,0 +1,27 @@
+{
+  "name": "omotenashi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kstm-su/omotenashi.git"
+  },
+  "author": "kstm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kstm-su/omotenashi/issues"
+  },
+  "homepage": "https://github.com/kstm-su/omotenashi#readme",
+  "dependencies": {
+    "material-ui": "^0.15.1",
+    "react": "^15.2.0",
+    "react-dom": "^15.2.0",
+    "react-redux": "^4.4.5",
+    "react-tap-event-plugin": "^1.0.0",
+    "redux": "^3.5.2"
+  }
+}
