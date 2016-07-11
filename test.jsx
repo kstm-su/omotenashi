@@ -11,4 +11,4 @@ class TestElement extends React.Component {
   }
 }
 
-ReactDOM.render(<TestElement />, document.getElementById('main'));
+ReactDOM.render(<TestElement />, document.getElementById('app'));
