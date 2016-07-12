@@ -14,3 +14,8 @@ bundle.jsを生成
 ```
 $ webpack
 ```
+
+bundle.jsを生成するついでにサーバーも建てる
+```
+$ webpack-dev-server
+```
