@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn
+} from 'material-ui/Table';
 
 class TestElement extends React.Component {
   render() {
@@ -22,7 +29,10 @@ class TitleBar extends React.Component {
 
   render() {
     return (
-      <AppBar title="2016年度 前期" onLeftIconButtonTouchTap={this.onLeftButtonTouchTap} />
+      <AppBar
+        title="2016年度 前期"
+        onLeftIconButtonTouchTap={this.onLeftButtonTouchTap}
+      />
     );
   }
 }
@@ -37,7 +47,10 @@ class TimeTable extends React.Component{
   render() {
     return (
       <Table>
-        <TableHeader displaySelectAll={this.state.showCheckboxes} adjustForCheckbox={this.state.showCheckboxes}>
+        <TableHeader
+          displaySelectAll={this.state.showCheckboxes}
+          adjustForCheckbox={this.state.showCheckboxes}
+        >
           <TableRow>
             <TableHeaderColumn></TableHeaderColumn>
             <TableHeaderColumn>Mon</TableHeaderColumn>
@@ -81,11 +94,11 @@ class TimeTableCell extends React.Component{
 }
 
 var mySchedule = [
-  ['','','','プログラミング言語論','ネットワークコンピューティング'],
-  ['','画像処理','ソフトウェア工学','論理回路Ⅱ','ネットワークコンピューティング'],
-  ['画像処理','HCI','ソフトウェア工学','','論理回路Ⅱ'],
-  ['HCI','','プログラミング言語論','',''],
-  ['','','','','']
+  ['' ,'', '', 'プログラミング言語論', 'ネットワークコンピューティング'],
+  ['', '画像処理', 'ソフトウェア工学', '論理回路Ⅱ', 'ネットワークコンピューティング'],
+  ['画像処理', 'HCI', 'ソフトウェア工学', '', '論理回路Ⅱ'],
+  ['HCI', '', 'プログラミング言語論', '', ''],
+  ['', '', '', '', ''],
 ];
 
 const TestApp = () => (
