@@ -41,7 +41,7 @@ const userData = {
 };
 
 class TitleBar extends React.Component {
-  onLeftButtonTouchTap() {
+  leftButtonTouchTap() {
     console.log('TODO: show menu');
   }
 
@@ -49,7 +49,8 @@ class TitleBar extends React.Component {
     return (
       <AppBar
         title="2016年度 前期"
-        onLeftIconButtonTouchTap={this.onLeftButtonTouchTap}
+        onLeftIconButtonTouchTap={this.leftButtonTouchTap}
+        style={{position: 'fixed', top: 0}}
       />
     );
   }
@@ -61,9 +62,12 @@ class TimeTable extends React.Component {
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn></TableHeaderColumn>
+            <TableHeaderColumn style={{width: 16}}></TableHeaderColumn>
             {this.props.weeks.map((week, i) => (
-              <TableHeaderColumn key={i}>
+              <TableHeaderColumn key={i} style={{
+                borderLeft: '1px solid rgb(224, 224, 224)',
+                textAlign: 'center',
+              }}>
                 {week}
               </TableHeaderColumn>
               ))}
@@ -75,6 +79,7 @@ class TimeTable extends React.Component {
                 key={i}
                 index={i}
                 period={period}
+                periods={this.props.periods}
                 weeks={this.props.weeks}
                 subjects={this.props.subjects.filter(subject => {
                   return subject.schedules.some(schedule => schedule[1] === i);
@@ -89,10 +94,11 @@ class TimeTable extends React.Component {
 
 class TimeTableRow extends React.Component{
   render() {
-    console.log(this.props.subjects);
     return (
-      <TableRow>
-        <TableRowColumn>{this.props.period}</TableRowColumn>
+      <TableRow style={{height: (window.innerHeight - 123) / this.props.periods.length | 0}}>
+        <TableHeaderColumn style={{width: 16, textAlign: 'center'}}>
+          {this.props.period}
+        </TableHeaderColumn>
         {this.props.weeks.map((week, i) => (
           <TimeTableCell key={i}>
             {this.props.subjects.filter(subject => {
@@ -110,7 +116,10 @@ class TimeTableRow extends React.Component{
 class TimeTableCell extends React.Component{
   render() {
     return (
-      <TableRowColumn>
+      <TableRowColumn style={{
+        borderLeft: '1px solid rgb(224, 224, 224)',
+        textAlign: 'center',
+      }}>
         {this.props.children}
       </TableRowColumn>
     );
@@ -119,13 +128,15 @@ class TimeTableCell extends React.Component{
 
 const TestApp = () => (
   <MuiThemeProvider>
-    <div>
+    <div style={{position:'absolute', height: '100%'}}>
       <TitleBar />
-      <TimeTable
-        subjects={userData.subjects}
-        weeks={userData.weeks}
-        periods={userData.periods}
-      />
+      <div style={{marginTop: 64}}>
+        <TimeTable
+          subjects={userData.subjects}
+          weeks={userData.weeks}
+          periods={userData.periods}
+        />
+      </div>
     </div>
   </MuiThemeProvider>
 );
