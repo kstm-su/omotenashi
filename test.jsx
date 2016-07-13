@@ -24,7 +24,7 @@ class TestElement extends React.Component {
 
 class TitleBar extends React.Component {
   onLeftButtonTouchTap() {
-    console.log(0);
+    console.log('TODO: show menu');
   }
 
   render() {
@@ -37,20 +37,11 @@ class TitleBar extends React.Component {
   }
 }
 
-class TimeTable extends React.Component{
-  constructor(props){
-    super(props);
-	this.state = {
-      showCheckboxes:false
-    };
-  }
+class TimeTable extends React.Component {
   render() {
     return (
       <Table>
-        <TableHeader
-          displaySelectAll={this.state.showCheckboxes}
-          adjustForCheckbox={this.state.showCheckboxes}
-        >
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn></TableHeaderColumn>
             <TableHeaderColumn>Mon</TableHeaderColumn>
@@ -66,7 +57,7 @@ class TimeTable extends React.Component{
           ))} 
         </TableBody>
       </Table>
-	)
+    );
   }
 }
 
