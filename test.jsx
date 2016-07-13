@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import {
   Table,
   TableBody,
