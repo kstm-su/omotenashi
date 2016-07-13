@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import {
   Table,
   TableBody,
@@ -37,6 +38,21 @@ const userData = {
       print: '論理回路Ⅱ',
       schedules: [[3, 1], [4, 3]],
     }
+  ],
+  todo: [
+    {
+      id: 1,
+    title: '課題1',
+    deadline: '2016-07-15T00:00:00.000Z',
+  }, {
+      id: 2,
+    title: '課題2',
+    deadline: '2016-07-18T00:00:00.000Z',
+  }, {
+      id: 3,
+    title: '課題3',
+    deadline: '2016-07-120T00:00:00.000Z',
+  },
   ],
 };
 
@@ -128,17 +144,76 @@ class TimeTableCell extends React.Component{
   }
 }
 
-const TestApp = () => (
-  <MuiThemeProvider>
+class Todo extends React.Component{
+//FIXME: userDataを使っている
+  getTodoData() {
+    this.setState({todoList: userData.todo});
+  }
+  componentWillMount() {
+  this.getTodoData();
+  }
+  render() {
+    return(
+     <div>
+       <Table>
+         <TableHeader>
+           <TableRow>
+             <TableHeaderColumn>title</TableHeaderColumn>
+             <TableHeaderColumn>deadline</TableHeaderColumn>
+           </TableRow>
+         </TableHeader>
+         <TableBody>
+         {this.state.todoList.map((todo) =>
+           <TableRow key={todo.id}>
+             <TableRowColumn>{todo.title}</TableRowColumn>
+             <TableRowColumn>{todo.deadline}</TableRowColumn>
+           </TableRow>
+       )}
+         </TableBody>
+      </Table>
+    </div>
+  );
+  }
+}
+
+class TodoComponent extends React.Component{
+  render() {
+    return(
+      <TableRow>
+        <TableRowColumn>{this.props.todo.title}</TableRowColumn>
+        <TableRowColumn>{this.props.todo.deadline}</TableRowColumn>
+      </TableRow>
+    );
+  }
+}
+
+//TODO: こんな上の方でsubjectsとかweeksとかもつのおかしない？
+class Main extends React.Component{
+  render() {
+    return (
     <div style={{position:'absolute', height: '100%'}}>
       <TitleBar />
       <div style={{marginTop: 64}}>
-        <TimeTable
-          subjects={userData.subjects}
-          weeks={userData.weeks}
-          periods={userData.periods}
-        />
+    {this.props.children && React.cloneElement(this.props.children, {
+        subjects: userData.subjects,
+        weeks: userData.weeks,
+        periods: userData.periods,
+    })}
       </div>
+    </div>
+  );
+  }
+}
+
+const TestApp = () => (
+  <MuiThemeProvider>
+  <div>
+    <Router history={hashHistory}>
+    <Route path="/" component={Main}>
+    <IndexRoute component={TimeTable} />
+    <Route path="todo" component={Todo}/>
+    </Route>
+    </Router>
     </div>
   </MuiThemeProvider>
 );
