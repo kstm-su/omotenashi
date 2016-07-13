@@ -62,11 +62,12 @@ class TimeTable extends React.Component {
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn style={{width: 16}}></TableHeaderColumn>
+            <TableHeaderColumn style={{width: '7%'}}></TableHeaderColumn>
             {this.props.weeks.map((week, i) => (
               <TableHeaderColumn key={i} style={{
                 borderLeft: '1px solid rgb(224, 224, 224)',
                 textAlign: 'center',
+                padding: '0px',
               }}>
                 {week}
               </TableHeaderColumn>
@@ -96,7 +97,7 @@ class TimeTableRow extends React.Component{
   render() {
     return (
       <TableRow style={{height: (window.innerHeight - 123) / this.props.periods.length | 0}}>
-        <TableHeaderColumn style={{width: 16, textAlign: 'center'}}>
+        <TableHeaderColumn style={{width: '7%', textAlign: 'center', padding: '0px'}}>
           {this.props.period}
         </TableHeaderColumn>
         {this.props.weeks.map((week, i) => (
@@ -119,6 +120,7 @@ class TimeTableCell extends React.Component{
       <TableRowColumn style={{
         borderLeft: '1px solid rgb(224, 224, 224)',
         textAlign: 'center',
+        padding: '0px',
       }}>
         {this.props.children}
       </TableRowColumn>
