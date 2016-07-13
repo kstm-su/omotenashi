@@ -12,16 +12,6 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 
-class TestElement extends React.Component {
-  render() {
-    return (
-      <div>
-        hello, world.
-      </div>
-    );
-  }
-}
-
 class TitleBar extends React.Component {
   onLeftButtonTouchTap() {
     console.log('TODO: show menu');
