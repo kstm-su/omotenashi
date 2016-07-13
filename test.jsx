@@ -12,6 +12,34 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 
+const userData = {
+  weeks: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+  periods: [1, 2, 3, 4],
+  subjects: [
+    {
+      title: 'コンピュータデバイス',
+      print: 'コンデバ',
+      schedules: [[0, 0], [1, 3]],
+    }, {
+      title: '画像処理',
+      print: '画像処理',
+      schedules: [[0, 1], [1, 1]],
+    }, {
+      title: 'ヒューマンコンピュータインタラクション',
+      print: 'HCI',
+      schedules: [[0, 2], [0, 3]],
+    }, {
+      title: 'プログラミング言語論',
+      print: 'プロ言論',
+      schedules: [[2, 3], [3, 0]],
+    }, {
+      title: '論理回路Ⅱ',
+      print: '論理回路Ⅱ',
+      schedules: [[3, 1], [4, 3]],
+    }
+  ],
+};
+
 class TitleBar extends React.Component {
   onLeftButtonTouchTap() {
     console.log('TODO: show menu');
@@ -34,31 +62,46 @@ class TimeTable extends React.Component {
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn></TableHeaderColumn>
-            <TableHeaderColumn>Mon</TableHeaderColumn>
-            <TableHeaderColumn>Tue</TableHeaderColumn>
-            <TableHeaderColumn>Wed</TableHeaderColumn>
-            <TableHeaderColumn>Thu</TableHeaderColumn>
-            <TableHeaderColumn>Fri</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.props.data.map((row,index) => (
-            <TimeTableRow key={index} index={index} cells={row} />
-          ))} 
-        </TableBody>
-      </Table>
+            {this.props.weeks.map((week, i) => (
+              <TableHeaderColumn key={i}>
+                {week}
+              </TableHeaderColumn>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.props.periods.map((period, i) => (
+              <TimeTableRow
+                key={i}
+                index={i}
+                period={period}
+                weeks={this.props.weeks}
+                subjects={this.props.subjects.filter(subject => {
+                  return subject.schedules.some(schedule => schedule[1] === i);
+                })}
+              />
+              ))} 
+            </TableBody>
+          </Table>
     );
   }
 }
 
 class TimeTableRow extends React.Component{
   render() {
+    console.log(this.props.subjects);
     return (
       <TableRow>
-        <TableRowColumn>{this.props.index+1}</TableRowColumn>
-        {this.props.cells.map((cell,index) => {
-          return(<TimeTableCell key={index} value={cell} />)
-        })}
+        <TableRowColumn>{this.props.period}</TableRowColumn>
+        {this.props.weeks.map((week, i) => (
+          <TimeTableCell key={i}>
+            {this.props.subjects.filter(subject => {
+              return subject.schedules.some(schedule => {
+                return schedule[0] === i && schedule[1] === this.props.index;
+              });
+            }).map(subject => subject.print).join()}
+          </TimeTableCell>
+        ))}
       </TableRow>
     );
   }
@@ -68,25 +111,21 @@ class TimeTableCell extends React.Component{
   render() {
     return (
       <TableRowColumn>
-        {this.props.value}
+        {this.props.children}
       </TableRowColumn>
     );
   }
 }
 
-var mySchedule = [
-  ['' ,'', '', 'プログラミング言語論', 'ネットワークコンピューティング'],
-  ['', '画像処理', 'ソフトウェア工学', '論理回路Ⅱ', 'ネットワークコンピューティング'],
-  ['画像処理', 'HCI', 'ソフトウェア工学', '', '論理回路Ⅱ'],
-  ['HCI', '', 'プログラミング言語論', '', ''],
-  ['', '', '', '', ''],
-];
-
 const TestApp = () => (
   <MuiThemeProvider>
     <div>
       <TitleBar />
-      <TimeTable data={mySchedule} />
+      <TimeTable
+        subjects={userData.subjects}
+        weeks={userData.weeks}
+        periods={userData.periods}
+      />
     </div>
   </MuiThemeProvider>
 );
