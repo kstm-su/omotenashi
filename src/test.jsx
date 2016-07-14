@@ -12,7 +12,11 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import Todo from './todo.jsx';
 
+import userData from './testdata.js';
+
+	/*
 const userData = {
   weeks: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
   periods: [1, 2, 3, 4],
@@ -55,6 +59,7 @@ const userData = {
     },
   ],
 };
+*/
 
 class TitleBar extends React.Component {
   leftButtonTouchTap() {
@@ -150,6 +155,7 @@ class TimeTableCell extends React.Component{
   }
 }
 
+	/*
 class Todo extends React.Component{
   //FIXME: userDataを使っている
   getTodoData() {
@@ -192,6 +198,7 @@ class TodoComponent extends React.Component{
     );
   }
 }
+*/
 
 //TODO: こんな上の方でsubjectsとかweeksとかもつのおかしない？
 class Main extends React.Component{
