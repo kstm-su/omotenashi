@@ -10,6 +10,6 @@ export default class HeaderBar extends React.Component {
   }
 
   render() {
-    return <AppBar title={this.state.title} />
+    return <AppBar title={this.state.title} />;
   }
 }
