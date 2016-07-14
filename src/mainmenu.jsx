@@ -11,7 +11,8 @@ export default class MainMenu extends React.Component {
         open={this.props.show}
         onRequestChange={show => this.props[show ? 'open' : 'close']()}
       >
-        <a href="#todo"><MenuItem>Todo</MenuItem></a>
+        <MenuItem href="#" onTouchTap={this.props.close}>時間割</MenuItem>
+        <MenuItem href="#todo" onTouchTap={this.props.close}>イベントリスト</MenuItem>
       </Drawer>
     );
   }
