@@ -4,17 +4,18 @@ main {
 	bottom: 0;
 }
 
-.titlebar {
+.headerbar {
 	position: fixed !important;
 	top: 0;
 }
 
 .timetable th, .timetable td {
+	font-size: 10px !important;
 	text-align: center !important;
 	border-left: 1px solid rgb(224, 224, 224);
+	padding: 0 !important;
 }
 
 .timetable th:first-child {
 	width: 7%;
-	padding: 0 !important;
 }
