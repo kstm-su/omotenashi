@@ -3,10 +3,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 
 export default class HeaderBar extends React.Component {
-  componentWillMount() {
-    this.setState({
-      title: '',
-    });
+  constructor(props) {
+    super(props);
+    this.state = {title: ''};
   }
 
   render() {
