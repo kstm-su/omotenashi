@@ -66,7 +66,7 @@ class TitleBar extends React.Component {
       <AppBar
         title="2016年度 前期"
         onLeftIconButtonTouchTap={this.leftButtonTouchTap}
-        style={{position: 'fixed', top: 0}}
+        className="titlebar"
       />
     );
   }
@@ -75,45 +75,55 @@ class TitleBar extends React.Component {
 class TimeTable extends React.Component {
   render() {
     return (
-      <Table>
+      <Table className="timetable">
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn style={{width: '7%', padding: 0}}></TableHeaderColumn>
+            <TableHeaderColumn></TableHeaderColumn>
             {this.props.weeks.map((week, i) => (
-              <TableHeaderColumn key={i} style={{
-                borderLeft: '1px solid rgb(224, 224, 224)',
-                textAlign: 'center',
-                padding: '0px',
-              }}>
-              {week}
-            </TableHeaderColumn>
-            ))}
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.props.periods.map((period, i) => (
-            <TimeTableRow
-              key={i}
-              index={i}
-              period={period}
-              periods={this.props.periods}
-              weeks={this.props.weeks}
-              subjects={this.props.subjects.filter(subject => {
-                return subject.schedules.some(schedule => schedule[1] === i);
-              })}
-            />
-            ))} 
-          </TableBody>
-        </Table>
+              <TableHeaderColumn key={i}>
+                {week}
+              </TableHeaderColumn>
+              ))}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.props.periods.map((period, i) => (
+              <TimeTableRow
+                key={i}
+                index={i}
+                period={period}
+                periods={this.props.periods}
+                weeks={this.props.weeks}
+                subjects={this.props.subjects.filter(subject => {
+                  return subject.schedules.some(schedule => schedule[1] === i);
+                })}
+              />
+              ))} 
+            </TableBody>
+          </Table>
     );
   }
 }
 
 class TimeTableRow extends React.Component{
+  componentWillMount() {
+    this.updateHeight();
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateHeight.bind(this));
+  }
+
+  updateHeight() {
+    let h = window.innerHeight - 123;
+    let n = this.props.periods.length;
+    this.setState({height: h / n | 0});
+  }
+
   render() {
     return (
-      <TableRow style={{height: (window.innerHeight - 123) / this.props.periods.length | 0}}>
-        <TableHeaderColumn style={{width: '7%', textAlign: 'center', padding: 0}}>
+      <TableRow style={{height: this.state.height}}>
+        <TableHeaderColumn>
           {this.props.period}
         </TableHeaderColumn>
         {this.props.weeks.map((week, i) => (
@@ -133,13 +143,9 @@ class TimeTableRow extends React.Component{
 class TimeTableCell extends React.Component{
   render() {
     return (
-      <TableRowColumn style={{
-        borderLeft: '1px solid rgb(224, 224, 224)',
-        textAlign: 'center',
-        padding: '0px',
-      }}>
-      {this.props.children}
-    </TableRowColumn>
+      <TableRowColumn>
+        {this.props.children}
+      </TableRowColumn>
     );
   }
 }
@@ -191,9 +197,9 @@ class TodoComponent extends React.Component{
 class Main extends React.Component{
   render() {
     return (
-      <div style={{position:'absolute', height: '100%'}}>
+      <div>
         <TitleBar />
-        <div style={{marginTop: 64}}>
+        <div className="container">
           {this.props.children && React.cloneElement(this.props.children, {
             subjects: userData.subjects,
             weeks: userData.weeks,

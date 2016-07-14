@@ -1,0 +1,20 @@
+.container {
+	position: absolute;
+	top: 64px;
+	bottom: 0;
+}
+
+.titlebar {
+	position: fixed !important;
+	top: 0;
+}
+
+.timetable th, .timetable td {
+	text-align: center !important;
+	border-left: 1px solid rgb(224, 224, 224);
+}
+
+.timetable th:first-child {
+	width: 7%;
+	padding: 0 !important;
+}
