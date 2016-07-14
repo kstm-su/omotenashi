@@ -27,11 +27,15 @@ export class Main extends React.Component {
   }
 
   render() {
+    let children = React.cloneElement(this.props.children);
+    let title = children.props.route.title;
+    let closeButton = children.props.route.closeButton !== false;
     return (
       <MuiThemeProvider>
         <div>
           <HeaderBar
-            title={this.props.children.title}
+            title={title}
+            closeButton={closeButton}
             openMainMenu={this.openMainMenu.bind(this)}
           />
           <MainMenu
@@ -39,7 +43,7 @@ export class Main extends React.Component {
             open={this.openMainMenu.bind(this)}
             close={this.closeMainMenu.bind(this)}
           />
-          <main>{this.props.children}</main>
+          <main>{children}</main>
         </div>
       </MuiThemeProvider>
     );

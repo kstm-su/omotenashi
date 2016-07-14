@@ -13,7 +13,7 @@ export default class HeaderBar extends React.Component {
     return (
       <AppBar
         title={this.props.title}
-        iconElementRight={<CloseButton />}
+        iconElementRight={this.props.closeButton ? <CloseButton /> : null}
         onLeftIconButtonTouchTap={this.props.openMainMenu}
         className="headerbar"
       />

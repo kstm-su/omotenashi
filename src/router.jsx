@@ -10,8 +10,8 @@ export default class AppRouter extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={Main}>
-          <IndexRoute component={TimeTable} />
-          <Route path="todo" component={Todo} />
+          <IndexRoute component={TimeTable} title="時間割" closeButton={false} />
+          <Route path="todo" component={Todo} title="イベント一覧" />
         </Route>
       </Router>
     );

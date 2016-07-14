@@ -12,7 +12,7 @@ export default class MainMenu extends React.Component {
         onRequestChange={show => this.props[show ? 'open' : 'close']()}
       >
         <MenuItem href="#" onTouchTap={this.props.close}>時間割</MenuItem>
-        <MenuItem href="#todo" onTouchTap={this.props.close}>イベントリスト</MenuItem>
+        <MenuItem href="#todo" onTouchTap={this.props.close}>イベント一覧</MenuItem>
       </Drawer>
     );
   }
