@@ -13,6 +13,7 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 import HeaderBar from './headerbar.jsx';
+import MainMenu from './mainmenu.jsx';
 import Todo from './todo.jsx';
 
 import userData from './testdata.js';
@@ -97,10 +98,30 @@ class TimeTableCell extends React.Component{
 
 //TODO: こんな上の方でsubjectsとかweeksとかもつのおかしない？
 class Main extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      showMainMenu: false,
+    };
+  }
+
+  openMainMenu() {
+    this.setState({showMainMenu: true});
+  }
+
+  closeMainMenu() {
+    this.setState({showMainMenu: false});
+  }
+
   render() {
     return (
       <div>
-        <HeaderBar />
+        <HeaderBar title="" openMainMenu={this.openMainMenu.bind(this)} />
+        <MainMenu
+          show={this.state.showMainMenu}
+          open={this.openMainMenu.bind(this)}
+          close={this.closeMainMenu.bind(this)}
+        />
         <div className="container">
           {this.props.children && React.cloneElement(this.props.children, {
             subjects: userData.subjects,
