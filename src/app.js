@@ -1,1 +1,1 @@
-import './test.jsx';
+import './main.jsx';
