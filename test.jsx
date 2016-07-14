@@ -42,17 +42,17 @@ const userData = {
   todo: [
     {
       id: 1,
-    title: '課題1',
-    deadline: '2016-07-15T00:00:00.000Z',
-  }, {
+      title: '課題1',
+      deadline: '2016-07-15T00:00:00.000Z',
+    }, {
       id: 2,
-    title: '課題2',
-    deadline: '2016-07-18T00:00:00.000Z',
-  }, {
+      title: '課題2',
+      deadline: '2016-07-18T00:00:00.000Z',
+    }, {
       id: 3,
-    title: '課題3',
-    deadline: '2016-07-120T00:00:00.000Z',
-  },
+      title: '課題3',
+      deadline: '2016-07-120T00:00:00.000Z',
+    },
   ],
 };
 
@@ -78,33 +78,33 @@ class TimeTable extends React.Component {
       <Table>
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
-            <TableHeaderColumn style={{width: '7%'}}></TableHeaderColumn>
+            <TableHeaderColumn style={{width: '7%', padding: 0}}></TableHeaderColumn>
             {this.props.weeks.map((week, i) => (
               <TableHeaderColumn key={i} style={{
                 borderLeft: '1px solid rgb(224, 224, 224)',
                 textAlign: 'center',
                 padding: '0px',
               }}>
-                {week}
-              </TableHeaderColumn>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {this.props.periods.map((period, i) => (
-              <TimeTableRow
-                key={i}
-                index={i}
-                period={period}
-                periods={this.props.periods}
-                weeks={this.props.weeks}
-                subjects={this.props.subjects.filter(subject => {
-                  return subject.schedules.some(schedule => schedule[1] === i);
-                })}
-              />
-              ))} 
-            </TableBody>
-          </Table>
+              {week}
+            </TableHeaderColumn>
+            ))}
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {this.props.periods.map((period, i) => (
+            <TimeTableRow
+              key={i}
+              index={i}
+              period={period}
+              periods={this.props.periods}
+              weeks={this.props.weeks}
+              subjects={this.props.subjects.filter(subject => {
+                return subject.schedules.some(schedule => schedule[1] === i);
+              })}
+            />
+            ))} 
+          </TableBody>
+        </Table>
     );
   }
 }
@@ -113,7 +113,7 @@ class TimeTableRow extends React.Component{
   render() {
     return (
       <TableRow style={{height: (window.innerHeight - 123) / this.props.periods.length | 0}}>
-        <TableHeaderColumn style={{width: '7%', textAlign: 'center', padding: '0px'}}>
+        <TableHeaderColumn style={{width: '7%', textAlign: 'center', padding: 0}}>
           {this.props.period}
         </TableHeaderColumn>
         {this.props.weeks.map((week, i) => (
@@ -124,8 +124,8 @@ class TimeTableRow extends React.Component{
               });
             }).map(subject => subject.print).join()}
           </TimeTableCell>
-        ))}
-      </TableRow>
+          ))}
+        </TableRow>
     );
   }
 }
@@ -138,41 +138,41 @@ class TimeTableCell extends React.Component{
         textAlign: 'center',
         padding: '0px',
       }}>
-        {this.props.children}
-      </TableRowColumn>
+      {this.props.children}
+    </TableRowColumn>
     );
   }
 }
 
 class Todo extends React.Component{
-//FIXME: userDataを使っている
+  //FIXME: userDataを使っている
   getTodoData() {
     this.setState({todoList: userData.todo});
   }
   componentWillMount() {
-  this.getTodoData();
+    this.getTodoData();
   }
   render() {
     return(
-     <div>
-       <Table>
-         <TableHeader>
-           <TableRow>
-             <TableHeaderColumn>title</TableHeaderColumn>
-             <TableHeaderColumn>deadline</TableHeaderColumn>
-           </TableRow>
-         </TableHeader>
-         <TableBody>
-         {this.state.todoList.map((todo) =>
-           <TableRow key={todo.id}>
-             <TableRowColumn>{todo.title}</TableRowColumn>
-             <TableRowColumn>{todo.deadline}</TableRowColumn>
-           </TableRow>
-       )}
-         </TableBody>
-      </Table>
-    </div>
-  );
+      <div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>title</TableHeaderColumn>
+              <TableHeaderColumn>deadline</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.state.todoList.map((todo) =>
+              <TableRow key={todo.id}>
+                <TableRowColumn>{todo.title}</TableRowColumn>
+                <TableRowColumn>{todo.deadline}</TableRowColumn>
+              </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+    );
   }
 }
 
