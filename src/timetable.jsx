@@ -1,9 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router';
 import {
   Table,
   TableBody,
@@ -16,13 +11,21 @@ import {
 import userData from './testdata.js';
 
 export default class TimeTable extends React.Component {
+  componentWillMount() {
+    this.setState({
+      subjects: userData.subjects,
+      weeks: userData.weeks,
+      periods: userData.periods,
+    });
+  }
+
   render() {
     return (
       <Table className="timetable">
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn></TableHeaderColumn>
-            {this.props.weeks.map((week, i) => (
+            {this.state.weeks.map((week, i) => (
               <TableHeaderColumn key={i}>
                 {week}
               </TableHeaderColumn>
@@ -30,14 +33,14 @@ export default class TimeTable extends React.Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {this.props.periods.map((period, i) => (
+          {this.state.periods.map((period, i) => (
             <TimeTableRow
               key={i}
               index={i}
               period={period}
-              periods={this.props.periods}
-              weeks={this.props.weeks}
-              subjects={this.props.subjects.filter(subject => {
+              periods={this.state.periods}
+              weeks={this.state.weeks}
+              subjects={this.state.subjects.filter(subject => {
                 return subject.schedules.some(schedule => schedule[1] === i);
               })}
             />
