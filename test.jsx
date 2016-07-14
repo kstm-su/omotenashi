@@ -191,29 +191,29 @@ class TodoComponent extends React.Component{
 class Main extends React.Component{
   render() {
     return (
-    <div style={{position:'absolute', height: '100%'}}>
-      <TitleBar />
-      <div style={{marginTop: 64}}>
-    {this.props.children && React.cloneElement(this.props.children, {
-        subjects: userData.subjects,
-        weeks: userData.weeks,
-        periods: userData.periods,
-    })}
+      <div style={{position:'absolute', height: '100%'}}>
+        <TitleBar />
+        <div style={{marginTop: 64}}>
+          {this.props.children && React.cloneElement(this.props.children, {
+            subjects: userData.subjects,
+            weeks: userData.weeks,
+            periods: userData.periods,
+          })}
+        </div>
       </div>
-    </div>
-  );
+    );
   }
 }
 
 const TestApp = () => (
   <MuiThemeProvider>
-  <div>
-    <Router history={hashHistory}>
-    <Route path="/" component={Main}>
-    <IndexRoute component={TimeTable} />
-    <Route path="todo" component={Todo}/>
-    </Route>
-    </Router>
+    <div>
+      <Router history={hashHistory}>
+        <Route path="/" component={Main}>
+          <IndexRoute component={TimeTable} />
+          <Route path="todo" component={Todo}/>
+        </Route>
+      </Router>
     </div>
   </MuiThemeProvider>
 );
