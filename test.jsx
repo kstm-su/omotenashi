@@ -19,23 +19,23 @@ const userData = {
   subjects: [
     {
       title: 'コンピュータデバイス',
-      print: 'コンデバ',
+      label: 'コンデバ',
       schedules: [[0, 0], [1, 3]],
     }, {
       title: '画像処理',
-      print: '画像処理',
+      label: '画像処理',
       schedules: [[0, 1], [1, 1]],
     }, {
       title: 'ヒューマンコンピュータインタラクション',
-      print: 'HCI',
+      label: 'HCI',
       schedules: [[0, 2], [0, 3]],
     }, {
       title: 'プログラミング言語論',
-      print: 'プロ言論',
+      label: 'プロ言論',
       schedules: [[2, 3], [3, 0]],
     }, {
       title: '論理回路Ⅱ',
-      print: '論理回路Ⅱ',
+      label: '論理回路Ⅱ',
       schedules: [[3, 1], [4, 3]],
     }
   ],
@@ -122,7 +122,7 @@ class TimeTableRow extends React.Component{
               return subject.schedules.some(schedule => {
                 return schedule[0] === i && schedule[1] === this.props.index;
               });
-            }).map(subject => subject.print).join()}
+            }).map(subject => subject.label).join()}
           </TimeTableCell>
           ))}
         </TableRow>
