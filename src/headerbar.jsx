@@ -2,7 +2,7 @@ import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 
-class HeaderBar extends React.Component {
+export default class HeaderBar extends React.Component {
   componentWillMount() {
     this.setState({
       title: '',
@@ -13,5 +13,3 @@ class HeaderBar extends React.Component {
     return <AppBar title={this.state.title} />
   }
 }
-
-module.exports = HeaderBar;
