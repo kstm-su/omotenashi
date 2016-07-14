@@ -60,6 +60,10 @@ class TimeTableRow extends React.Component {
     window.addEventListener('resize', this.updateHeight.bind(this));
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateHeight.bind(this));
+  }
+
   updateHeight() {
     let h = window.innerHeight - 123;
     let n = this.props.periods.length;
