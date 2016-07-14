@@ -15,6 +15,7 @@ export default class HeaderBar extends React.Component {
         title={this.props.title}
         iconElementRight={<CloseButton />}
         onLeftIconButtonTouchTap={this.props.openMainMenu}
+        className="headerbar"
       />
     );
   }
