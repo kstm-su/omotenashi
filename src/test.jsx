@@ -12,25 +12,10 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import HeaderBar from './headerbar.jsx';
 import Todo from './todo.jsx';
 
 import userData from './testdata.js';
-
-class TitleBar extends React.Component {
-  leftButtonTouchTap() {
-    console.log('TODO: show menu');
-  }
-
-  render() {
-    return (
-      <AppBar
-        title="2016年度 前期"
-        onLeftIconButtonTouchTap={this.leftButtonTouchTap}
-        className="titlebar"
-      />
-    );
-  }
-}
 
 class TimeTable extends React.Component {
   render() {
@@ -115,7 +100,7 @@ class Main extends React.Component{
   render() {
     return (
       <div>
-        <TitleBar />
+        <HeaderBar />
         <div className="container">
           {this.props.children && React.cloneElement(this.props.children, {
             subjects: userData.subjects,
