@@ -41,14 +41,3 @@ export default class Todo extends React.Component{
     );
   }
 }
-
-class TodoComponent extends React.Component{
-  render() {
-    return(
-      <TableRow>
-        <TableRowColumn>{this.props.todo.title}</TableRowColumn>
-        <TableRowColumn>{this.props.todo.deadline}</TableRowColumn>
-      </TableRow>
-    );
-  }
-}
