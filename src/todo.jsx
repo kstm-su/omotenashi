@@ -27,7 +27,7 @@ export default class Todo extends React.Component{
   //FIXME: userDataを使っている
   getTodoData() {
     for(var key in userData.todo){
-		userData.todo[key].deadline = remainingTime(new Date(userData.todo[key].deadline))
+		userData.todo[key].deadlineString = remainingTime(new Date(userData.todo[key].deadline))
 	}
     this.setState({todoList: userData.todo});
   }
@@ -48,7 +48,7 @@ export default class Todo extends React.Component{
             {this.state.todoList.map((todo) =>
               <TableRow key={todo.id}>
                 <TableRowColumn>{todo.title}</TableRowColumn>
-                <TableRowColumn>{todo.deadline}</TableRowColumn>
+                <TableRowColumn>{todo.deadlineString}</TableRowColumn>
               </TableRow>
               )}
             </TableBody>
