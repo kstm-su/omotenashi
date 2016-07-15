@@ -26,9 +26,6 @@ function remainingTime(targetTime){
 export default class Todo extends React.Component{
   //FIXME: userDataを使っている
   getTodoData() {
-    for(var key in userData.todo){
-		userData.todo[key].deadlineString = remainingTime(new Date(userData.todo[key].deadline))
-	}
     this.setState({todoList: userData.todo});
   }
   componentWillMount() {
@@ -56,11 +53,22 @@ export default class Todo extends React.Component{
 }
 
 class TodoComponent extends React.Component{
+  timeUpdate() {
+    this.setState({timeString: remainingTime(new Date(this.props.todo.deadline))});
+  }
+  componentWillMount() {
+    this.timeUpdate();
+    let interval = setInterval(this.timeUpdate.bind(this), 1000);
+    this.setState({interval, interval});
+  }
+  componentWillUnmount() {
+    clearInterval(this.state.interval);
+  }
   render() {
     return(
       <TableRow>
         <TableRowColumn>{this.props.todo.title}</TableRowColumn>
-        <TableRowColumn>{this.props.todo.deadlineString}</TableRowColumn>
+        <TableRowColumn>{this.state.timeString}</TableRowColumn>
       </TableRow>
     );
   }
