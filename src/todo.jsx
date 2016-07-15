@@ -46,14 +46,22 @@ export default class Todo extends React.Component{
           </TableHeader>
           <TableBody>
             {this.state.todoList.map((todo) =>
-              <TableRow key={todo.id}>
-                <TableRowColumn>{todo.title}</TableRowColumn>
-                <TableRowColumn>{todo.deadlineString}</TableRowColumn>
-              </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
+              <TodoComponent key={todo.id} todo={todo}/>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  }
+}
+
+class TodoComponent extends React.Component{
+  render() {
+    return(
+      <TableRow>
+        <TableRowColumn>{this.props.todo.title}</TableRowColumn>
+        <TableRowColumn>{this.props.todo.deadlineString}</TableRowColumn>
+      </TableRow>
     );
   }
 }
