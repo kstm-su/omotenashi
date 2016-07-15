@@ -7,13 +7,19 @@ main {
 .headerbar {
 	position: fixed !important;
 	top: 0;
+	text-align: center;
+}
+
+.timetable tr:last-child {
+	border-bottom: none !important;
 }
 
 .timetable th, .timetable td {
-	font-size: 10px !important;
 	text-align: center !important;
 	border-left: 1px solid rgb(224, 224, 224);
 	padding: 0 !important;
+	text-overflow: clip !important;
+	box-sizing: border-box;
 }
 
 .timetable th:first-child {
