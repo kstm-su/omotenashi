@@ -41,7 +41,7 @@ export default class TimeTable extends React.Component {
               periods={this.state.periods}
               weeks={this.state.weeks}
               subjects={this.state.subjects.filter(subject => {
-                return subject.schedules.some(schedule => schedule[1] === i);
+                return subject.schedules.some(s => s.period === i);
               })}
               maxLength={this.state.subjects.reduce((max, subject) => {
                 return Math.max(max, subject.label.length);
@@ -84,13 +84,30 @@ class TimeTableRow extends React.Component {
             key={i}
             weeks={this.props.weeks}
             height={this.state.height}
-            maxLength={this.props.maxLength}
           >
-            {this.props.subjects.filter(subject => {
-              return subject.schedules.some(schedule => {
-                return schedule[0] === i && schedule[1] === this.props.index;
+            {this.props.subjects.map(subject => {
+              subject.s = subject.schedules.filter(s => {
+                return s.week === i && s.period === this.props.index;
               });
-            }).map(subject => subject.label).join()}
+              return subject;
+            }).filter(s => s.s.length).map((subject, j, subjects) => {
+              let len = this.props.maxLength;
+              let width = innerWidth * 0.93 / this.props.weeks.length / len;
+              let height = this.state.height / subjects.length;
+              return (
+                <div
+                  key={j}
+                  className="timetable-subject"
+                  style={{
+                    height: height,
+                    fontSize: Math.min(width, height / 3) | 0,
+                  }}
+                >
+                  {subject.label}
+                  <small>{subject.s.pop().location}</small>
+                </div>
+              );
+            })}
           </TimeTableCell>
         ))}
       </TableRow>
@@ -99,16 +116,9 @@ class TimeTableRow extends React.Component {
 }
 
 class TimeTableCell extends React.Component {
-  get fontSize() {
-    let len = this.props.maxLength;
-    let width = innerWidth * 0.93 / this.props.weeks.length / len;
-    let height = this.props.height;
-    return Math.min(width, height) | 0;
-  }
-
   render() {
     return (
-      <TableRowColumn style={{height: this.props.height, fontSize: this.fontSize}}>
+      <TableRowColumn style={{height: this.props.height}}>
         {this.props.children}
       </TableRowColumn>
     );
