@@ -24,7 +24,7 @@ main {
 
 .timetable th small, .timetable td small {
 	display: block;
-	font-size: 50%;
+	font-size: 50% !important;
 	color: #666;
 }
 

@@ -92,19 +92,27 @@ class TimeTableRow extends React.Component {
               return subject;
             }).filter(s => s.s.length).map((subject, j, subjects) => {
               let len = this.props.maxLength;
-              let width = innerWidth * 0.93 / this.props.weeks.length / len;
+              let width = innerWidth * 0.93 / this.props.weeks.length;
               let height = this.state.height / subjects.length;
+              let aspect = width / len / height;
               return (
                 <div
                   key={j}
-                  className="timetable-subject"
-                  style={{
-                    height: height,
-                    fontSize: Math.min(width, height / 3) | 0,
-                  }}
+                  style={{display: aspect > 1 ? 'table-cell': 'table-row'}}
                 >
-                  {subject.label}
-                  <small>{subject.s.pop().location}</small>
+                  <div
+                    style={{
+                      width,
+                      height,
+                      fontSize: Math.min(width / len, height / 3) | 0,
+                      top: j / subjects.length * 100 + '%',
+                      display: 'table-cell',
+                      verticalAlign: 'middle',
+                    }}
+                  >
+                    {subject.label}
+                    <small>{subject.s.pop().location}</small>
+                  </div>
                 </div>
               );
             })}
