@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kstm-su/omotenashi.svg?branch=mockup)](https://travis-ci.org/kstm-su/omotenashi)
+
 # omotenashi
 
 クローン
