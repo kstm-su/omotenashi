@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "webpack-dev-server",
+    "test": "webpack src/app.js",
     "build": "webpack",
     "postinstall": "node ./postinstall.js"
   },
