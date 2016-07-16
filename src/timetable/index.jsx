@@ -114,6 +114,7 @@ class TimeTableRow extends React.Component {
               return (
                 <div key={j} style={{display}}>
                   <FlatButton
+                    href={`#/course/${course.id}`}
                     className="timetable-course"
                     style={{
                       width,
