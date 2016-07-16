@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Goryudyuma/omotenashi.svg?branch=travis)](https://travis-ci.org/Goryudyuma/omotenashi)
+[![Build Status](https://travis-ci.org/kstm-su/omotenashi.svg?branch=mockup)](https://travis-ci.org/kstm-su/omotenashi)
 
 # omotenashi
 
