@@ -12,10 +12,10 @@ $ npm install
 
 bundle.jsを生成
 ```
-$ webpack
+$ npm run build
 ```
 
 テスト用サーバーを建てる
 ```
-$ webpack-dev-server
+$ npm start
 ```
