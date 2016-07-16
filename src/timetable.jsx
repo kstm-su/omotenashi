@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import FlatButton from 'material-ui/FlatButton';
 
 import userData from './testdata.js';
 
@@ -109,7 +110,7 @@ class TimeTableRow extends React.Component {
               }
               return (
                 <div key={j} style={{display}}>
-                  <div
+                  <FlatButton
                     style={{
                       width,
                       height,
@@ -117,11 +118,13 @@ class TimeTableRow extends React.Component {
                       display: 'table-cell',
                       verticalAlign: 'middle',
                       backgroundColor: subject.color,
+                      minWidth:'none',
+                      lineHeight:'initial',
                     }}
                   >
                     {subject.label}
                     <small>{subject.s.pop().location}</small>
-                  </div>
+                  </FlatButton>
                 </div>
               );
             })}
