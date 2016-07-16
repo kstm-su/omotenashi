@@ -59,6 +59,10 @@ main {
 	border-radius: 0 !important;
 }
 
+.timetable-subject:hover {
+	opacity: 0.5;
+}
+
 .timetable td:not(:empty) {
 	border: none;
 }
