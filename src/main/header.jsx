@@ -6,7 +6,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 export default class Header extends React.Component {
   closePage(e) {
-    window.location.href = '#';
+    history.back();
   }
 
   render() {
@@ -23,7 +23,7 @@ export default class Header extends React.Component {
 
 class CloseButton extends React.Component {
   click() {
-    location.href = '#';
+    history.back();
   }
 
   render() {
