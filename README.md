@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Goryudyuma/omotenashi.svg?branch=travis)](https://travis-ci.org/Goryudyuma/omotenashi)
+
 # omotenashi
 
 クローン
