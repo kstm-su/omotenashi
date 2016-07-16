@@ -17,7 +17,7 @@ export default class TimeTable extends React.Component {
       subjects: userData.subjects.map((subject, i, subjects) => {
         if (subject.color == null) {
           let h = i * 360 / subjects.length;
-          subject.color = `hsl(${h}, 100%, 90%)`;
+          subject.color = `hsl(${h}, 100%, 50%)`;
         }
         return subject;
       }),
@@ -118,6 +118,9 @@ class TimeTableRow extends React.Component {
                       display: 'table-cell',
                       verticalAlign: 'middle',
                       backgroundColor: subject.color,
+                      backgroundImage: 'linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.3))',
+                      WebkitTextStroke: `${Math.min(width / len, height / 3) / 40}px #333`,
+                      color: 'white',
                       minWidth: 'none',
                       lineHeight: 'initial',
                     }}
