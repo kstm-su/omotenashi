@@ -2,8 +2,9 @@ import React from 'react';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import {Main} from './main.jsx';
-import TimeTable from './timetable.jsx';
-import Todo from './todo.jsx';
+import TimeTable from './../timetable/timetable.jsx';
+import Todo from './../eventlist/eventlist.jsx';
+import Course from './../course/course.jsx';
 
 export default class AppRouter extends React.Component {
   render() {
@@ -16,6 +17,7 @@ export default class AppRouter extends React.Component {
             closeButton={false}
           />
           <Route path="todo" component={Todo} title="イベント一覧" />
+		  <Route path="course/:id" component={Course} title="授業ページ" />
         </Route>
       </Router>
     );

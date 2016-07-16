@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppRouter from './router.jsx';
 import HeaderBar from './headerbar.jsx';
 import MainMenu from './mainmenu.jsx';
-import LoginForm from './loginform.jsx';
+import LoginForm from './../loginform/loginform.jsx';
 
 class App extends React.Component {
   render() {

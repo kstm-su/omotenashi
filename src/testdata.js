@@ -87,4 +87,85 @@ module.exports = {
       deadline: '2016-07-120T00:00:00.000Z',
     },
   ],
+  course: {
+    0: {
+      title: 'コンピュータデバイス',
+      label: 'コンデバ',
+      schedules: [{
+        week: 0,
+        period: 0,
+        location: '第2講義室',
+      }, {
+        week: 1,
+        period: 3,
+        location: '第2講義室',
+      }],
+	  text: 'コンピュータデバイスの授業',
+    },
+	1: {
+      title: '画像処理',
+      label: '画像処理',
+      schedules: [{
+        week: 0,
+        period: 1,
+        location: '第2講義室',
+      }, {
+        week: 1,
+        period: 1,
+        location: '第2講義室',
+      }],
+    },
+	2: {
+      title: 'ヒューマンコンピュータインタラクション',
+      label: 'HCI',
+      schedules: [{
+        week: 0,
+        period: 2,
+        location: '第2講義室',
+      }, {
+        week: 0,
+        period: 3,
+        location: '第2講義室',
+      }],
+	  text: 'ヒューマンコンピュータインタラクションの授業',
+    },
+	3: {
+      title: 'プログラミング言語論',
+      label: 'プロ言論',
+      schedules: [{
+        week: 2,
+        period: 3,
+        location: '第2講義室',
+      }, {
+        week: 3,
+        period: 0,
+        location: '第2講義室',
+      }],
+	  text: 'プログラミング言語論の授業',
+    },
+	4: {
+      title: '論理回路Ⅱ',
+      label: '論理回路Ⅱ',
+      schedules: [{
+        week: 3,
+        period: 1,
+        location: '第2講義室',
+      }, {
+        week: 4,
+        period: 3,
+        location: '4F実験室',
+      }],
+	  text: '論理回路Ⅱの授業',
+    },
+	5: {
+      title: 'アカデミックイングリッシュ',
+      label: 'AE',
+      schedules: [{
+        week: 1,
+        period: 3,
+        location: '物理のどっか',
+      }],
+	  text: 'アカデミック・イングリッシュの授業',
+    }
+  },
 };

@@ -8,7 +8,7 @@ import {
   TableRowColumn
 } from 'material-ui/Table';
 
-import userData from './testdata.js';
+import userData from './../testdata.js';
 
 
 export default class Todo extends React.Component{
