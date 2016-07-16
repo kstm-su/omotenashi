@@ -101,17 +101,19 @@ class TimeTableRow extends React.Component {
               let width = innerWidth * 0.93 / this.props.weeks.length;
               let height = this.state.height / subjects.length;
               let aspect = width / len / height;
+              let display = 'table-row';
+              if (aspect > 0.7) {
+                display = 'table-cell';
+                width /= subjects.length;
+                height = this.state.height;
+              }
               return (
-                <div
-                  key={j}
-                  style={{display: aspect > 1 ? 'table-cell': 'table-row'}}
-                >
+                <div key={j} style={{display}}>
                   <div
                     style={{
                       width,
-                      height: aspect > 1 ? this.state.height : height,
+                      height,
                       fontSize: Math.min(width / len, height / 3) | 0,
-                      top: j / subjects.length * 100 + '%',
                       display: 'table-cell',
                       verticalAlign: 'middle',
                       backgroundColor: subject.color,
