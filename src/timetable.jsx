@@ -118,8 +118,8 @@ class TimeTableRow extends React.Component {
                       display: 'table-cell',
                       verticalAlign: 'middle',
                       backgroundColor: subject.color,
-                      minWidth:'none',
-                      lineHeight:'initial',
+                      minWidth: 'none',
+                      lineHeight: 'initial',
                     }}
                   >
                     {subject.label}
