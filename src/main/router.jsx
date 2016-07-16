@@ -1,5 +1,5 @@
 import React from 'react';
-import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import {Main} from './main.jsx';
 import TimeTable from './../timetable/timetable.jsx';
@@ -11,7 +11,11 @@ export default class AppRouter extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={Main}>
-          <IndexRoute component={TimeTable} title="時間割" closeButton={false} />
+          <IndexRoute
+            component={TimeTable}
+            title="時間割"
+            closeButton={false}
+          />
           <Route path="todo" component={Todo} title="イベント一覧" />
 		  <Route path="course/:id" component={Course} title="授業ページ" />
         </Route>
