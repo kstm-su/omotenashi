@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppRouter from './router.jsx';
 import HeaderBar from './headerbar.jsx';
 import MainMenu from './mainmenu.jsx';
+import LoginForm from './loginform.jsx';
 
 class App extends React.Component {
   render() {
@@ -16,14 +17,26 @@ class App extends React.Component {
 export class Main extends React.Component {
   componentWillMount() {
     this.closeMainMenu();
+    this.closeLoginForm();
   }
 
   openMainMenu() {
-    this.setState({showMainMenu: true});
+    this.setState({mainMenu: true});
   }
 
   closeMainMenu() {
-    this.setState({showMainMenu: false});
+    this.setState({mainMenu: false});
+  }
+
+  openLoginForm() {
+    this.setState({
+      loginForm: true,
+      mainMenu: false,
+    });
+  }
+
+  closeLoginForm() {
+    this.setState({loginForm: false});
   }
 
   render() {
@@ -39,9 +52,15 @@ export class Main extends React.Component {
             openMainMenu={this.openMainMenu.bind(this)}
           />
           <MainMenu
-            show={this.state.showMainMenu}
+            enable={this.state.mainMenu}
             open={this.openMainMenu.bind(this)}
             close={this.closeMainMenu.bind(this)}
+            openLoginForm={this.openLoginForm.bind(this)}
+          />
+          <LoginForm
+            enable={this.state.loginForm}
+            open={this.openLoginForm.bind(this)}
+            close={this.closeLoginForm.bind(this)}
           />
           <main>{children}</main>
         </div>
