@@ -1,7 +1,7 @@
 module.exports = {
   weeks: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
   periods: [1, 2, 3, 4],
-  subjects: [
+  courses: [
     {
       title: 'コンピュータデバイス',
       label: 'コンデバ',

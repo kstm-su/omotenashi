@@ -41,11 +41,11 @@ class Color {
 export default class TimeTable extends React.Component {
   componentWillMount() {
     this.setState({
-      subjects: userData.subjects.map((subject, i, subjects) => {
-        if (subject.color == null) {
-          subject.color = new Color(i * 360 / subjects.length | 0);
+      courses: userData.courses.map((course, i, courses) => {
+        if (course.color == null) {
+          course.color = new Color(i * 360 / courses.length | 0);
         }
-        return subject;
+        return course;
       }),
       weeks: userData.weeks,
       periods: userData.periods,
@@ -73,11 +73,11 @@ export default class TimeTable extends React.Component {
               period={period}
               periods={this.state.periods}
               weeks={this.state.weeks}
-              subjects={this.state.subjects.filter(subject => {
-                return subject.schedules.some(s => s.period === i);
+              courses={this.state.courses.filter(course => {
+                return course.schedules.some(s => s.period === i);
               })}
-              maxLength={this.state.subjects.reduce((max, subject) => {
-                return Math.max(max, subject.label.length);
+              maxLength={this.state.courses.reduce((max, course) => {
+                return Math.max(max, course.label.length);
               }, 1)}
             />
           ))} 
@@ -118,27 +118,27 @@ class TimeTableRow extends React.Component {
             weeks={this.props.weeks}
             height={this.state.height}
           >
-            {this.props.subjects.map(subject => {
-              subject.s = subject.schedules.filter(s => {
+            {this.props.courses.map(course => {
+              course.s = course.schedules.filter(s => {
                 return s.week === i && s.period === this.props.index;
               });
-              return subject;
-            }).filter(s => s.s.length).map((subject, j, subjects) => {
+              return course;
+            }).filter(s => s.s.length).map((course, j, courses) => {
               let len = this.props.maxLength;
               let width = innerWidth * 0.93 / this.props.weeks.length | 0;
-              let height = this.state.height / subjects.length | 0;
+              let height = this.state.height / courses.length | 0;
               let aspect = width / len / height;
               let display = 'table-row';
-              let color = subject.color;
+              let color = course.color;
               if (aspect > 0.7) {
                 display = 'table-cell';
-                width /= subjects.length;
+                width /= courses.length;
                 height = this.state.height;
               }
               return (
                 <div key={j} style={{display}}>
                   <FlatButton
-                    className="timetable-subject"
+                    className="timetable-course"
                     style={{
                       width,
                       height,
@@ -152,8 +152,8 @@ class TimeTableRow extends React.Component {
                       boxShadow: color.shadow(0, 0, 0, 1, 1, 0.4, true),
                     }}
                   >
-                    {subject.label}
-                    <small>{subject.s.pop().location}</small>
+                    {course.label}
+                    <small>{course.s.pop().location}</small>
                   </FlatButton>
                 </div>
               );

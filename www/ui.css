@@ -51,7 +51,7 @@ main {
 	border-right: 1px solid rgb(224, 224, 224);
 }
 
-.timetable-subject {
+.timetable-course {
 	display: table-cell;
 	vertical-align: middle;
 	min-width: 0 !important;
@@ -59,7 +59,7 @@ main {
 	border-radius: 0 !important;
 }
 
-.timetable-subject:hover {
+.timetable-course:hover {
 	opacity: 0.5;
 }
 
