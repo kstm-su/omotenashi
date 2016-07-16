@@ -2,8 +2,8 @@ import React from 'react';
 import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
 
 import {Main} from './main.jsx';
-import TimeTable from './timetable.jsx';
-import Todo from './todo.jsx';
+import TimeTable from './../timetable/timetable.jsx';
+import Todo from './../eventlist/eventlist.jsx';
 
 export default class AppRouter extends React.Component {
   render() {

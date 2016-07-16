@@ -9,7 +9,7 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 
-import userData from './testdata.js';
+import userData from './../testdata.js';
 
 class Color {
   constructor(hue) {
