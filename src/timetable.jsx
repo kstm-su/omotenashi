@@ -13,7 +13,13 @@ import userData from './testdata.js';
 export default class TimeTable extends React.Component {
   componentWillMount() {
     this.setState({
-      subjects: userData.subjects,
+      subjects: userData.subjects.map((subject, i, subjects) => {
+        if (subject.color == null) {
+          let h = i * 360 / subjects.length;
+          subject.color = `hsl(${h}, 100%, 90%)`;
+        }
+        return subject;
+      }),
       weeks: userData.weeks,
       periods: userData.periods,
     });
@@ -103,11 +109,12 @@ class TimeTableRow extends React.Component {
                   <div
                     style={{
                       width,
-                      height,
+                      height: aspect > 1 ? this.state.height : height,
                       fontSize: Math.min(width / len, height / 3) | 0,
                       top: j / subjects.length * 100 + '%',
                       display: 'table-cell',
                       verticalAlign: 'middle',
+                      backgroundColor: subject.color,
                     }}
                   >
                     {subject.label}
