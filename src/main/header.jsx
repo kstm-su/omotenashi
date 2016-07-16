@@ -4,7 +4,7 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
-export default class HeaderBar extends React.Component {
+export default class Header extends React.Component {
   closePage(e) {
     window.location.href = '#';
   }
