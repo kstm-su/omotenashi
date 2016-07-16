@@ -9,8 +9,8 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 
-import userData from './../testdata.js';
-import {Hue} from './../main/color.js';
+import userData from '../testdata';
+import {Hue} from '../utils/color';
 
 export default class TimeTable extends React.Component {
   componentWillMount() {

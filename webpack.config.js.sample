@@ -1,10 +1,13 @@
-const path = require('path');
+onst path = require('path');
 
 module.exports = {
   entry: './src/app.js',
   output: {
     path: __dirname + '/www',
     filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx'],
   },
   module: {
     loaders: [

@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import AppRouter from './router.jsx';
-import HeaderBar from './headerbar.jsx';
-import MainMenu from './mainmenu.jsx';
-import LoginForm from './../loginform/loginform.jsx';
+import AppRouter from './router';
+import HeaderBar from './header';
+import MainMenu from './menu';
+import LoginForm from '../loginform';
 
 class App extends React.Component {
   render() {
@@ -14,7 +14,7 @@ class App extends React.Component {
   }
 }
 
-export class Main extends React.Component {
+export default class Main extends React.Component {
   componentWillMount() {
     this.closeMainMenu();
     this.closeLoginForm();
