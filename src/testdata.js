@@ -72,7 +72,7 @@ module.exports = {
       }],
     }
   ],
-  todo: [
+  events: [
     {
       id: 1,
       title: '課題1',

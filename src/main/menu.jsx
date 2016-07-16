@@ -32,7 +32,7 @@ export default class MainMenu extends React.Component {
             時間割
           </MenuItem>
           <MenuItem
-            href="#todo"
+            href="#events"
             leftIcon={<ActionAssignment />}
             onTouchTap={this.props.close}
           >

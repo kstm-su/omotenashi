@@ -4,7 +4,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AppRouter from './router';
-import HeaderBar from './header';
+import Header from './header';
 import MainMenu from './menu';
 import LoginForm from '../loginform';
 
@@ -46,7 +46,7 @@ export default class Main extends React.Component {
     return (
       <MuiThemeProvider>
         <div>
-          <HeaderBar
+          <Header
             title={title}
             closeButton={closeButton}
             openMainMenu={this.openMainMenu.bind(this)}

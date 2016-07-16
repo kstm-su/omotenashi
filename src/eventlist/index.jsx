@@ -10,14 +10,14 @@ import {
 
 import userData from '../testdata';
 
-export default class Todo extends React.Component {
+export default class EventList extends React.Component {
   //FIXME: userDataを使っている
-  getTodoData() {
-    this.setState({todoList: userData.todo});
+  getEventData() {
+    this.setState({events: userData.events});
   }
 
   componentWillMount() {
-    this.getTodoData();
+    this.getEventData();
   }
 
   render() {
@@ -31,8 +31,8 @@ export default class Todo extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {this.state.todoList.map(todo => {
-              return <TodoComponent key={todo.id} todo={todo} />;
+            {this.state.events.map(event => {
+              return <EventComponent key={event.id} event={event} />;
             })}
           </TableBody>
         </Table>
@@ -41,7 +41,7 @@ export default class Todo extends React.Component {
   }
 }
 
-class TodoComponent extends React.Component {
+class EventComponent extends React.Component {
   dateFormatting(targetTime) {
     return targetTime.toLocaleString();
   }
@@ -75,7 +75,7 @@ class TodoComponent extends React.Component {
   }
 
   timeUpdate() {
-    let timeString = this.remainingTime(new Date(this.props.todo.deadline));
+    let timeString = this.remainingTime(new Date(this.props.event.deadline));
     this.setState({timeString});
   }
 
@@ -92,7 +92,7 @@ class TodoComponent extends React.Component {
     return(
       <TableRow>
         {this.props.children}
-        <TableRowColumn>{this.props.todo.title}</TableRowColumn>
+        <TableRowColumn>{this.props.event.title}</TableRowColumn>
         <TableRowColumn>{this.state.timeString}</TableRowColumn>
       </TableRow>
     );

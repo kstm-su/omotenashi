@@ -3,7 +3,7 @@ import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
 import Main from './';
 import TimeTable from '../timetable';
-import Todo from '../eventlist';
+import EventList from '../eventlist';
 import Course from '../course';
 
 export default class AppRouter extends React.Component {
@@ -16,7 +16,7 @@ export default class AppRouter extends React.Component {
             title="時間割"
             closeButton={false}
           />
-          <Route path="todo" component={Todo} title="イベント一覧" />
+          <Route path="events" component={EventList} title="イベント一覧" />
           <Route path="course/:id" component={Course} title="授業ページ" />
         </Route>
       </Router>
