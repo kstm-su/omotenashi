@@ -9,8 +9,9 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 
-import userData from '../testdata';
 import {Hue} from '../utils/color';
+
+import userData from '../testdata';
 
 export default class TimeTable extends React.Component {
   componentWillMount() {
@@ -67,15 +68,16 @@ class TimeTableRow extends React.Component {
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateHeight.bind(this));
+    this.onresize = this.updateHeight.bind(this);
+    addEventListener('resize', this.onresize);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateHeight.bind(this));
+    removeEventListener('resize', this.onresize);
   }
 
   updateHeight() {
-    let h = window.innerHeight * 0.93 - 64;
+    let h = innerHeight * 0.93 - 64;
     let n = this.props.periods.length;
     this.setState({height: h / n});
   }
