@@ -11,13 +11,39 @@ import FlatButton from 'material-ui/FlatButton';
 
 import userData from './testdata.js';
 
+class Color {
+  constructor(hue) {
+    this.hue = hue;
+  }
+
+  hsl(saturation, lightness) {
+    return `hsl(${this.hue}, ${saturation * 100}%, ${lightness * 100}%)`;
+  }
+
+  gradient(angle, ...stops) {
+    return `linear-gradient(${angle}, ${stops.map(stop => {
+      return this.hsl(...stop);
+    })})`;
+  }
+
+  shadow(x, y, blur, spread, saturation, lightness, inset) {
+    let color = this.hsl(saturation, lightness);
+    return `${[x, y, blur, spread].map(length => {
+      let n = +length;
+      if (isNaN(n)) {
+        return length;
+      }
+      return n + 'px';
+    }).join(' ')} ${color}${inset ? ' inset' : ''}`;
+  }
+}
+
 export default class TimeTable extends React.Component {
   componentWillMount() {
     this.setState({
       subjects: userData.subjects.map((subject, i, subjects) => {
         if (subject.color == null) {
-          let h = i * 360 / subjects.length;
-          subject.color = `hsl(${h}, 100%, 50%)`;
+          subject.color = new Color(i * 360 / subjects.length | 0);
         }
         return subject;
       }),
@@ -30,7 +56,7 @@ export default class TimeTable extends React.Component {
     return (
       <Table className="timetable">
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-          <TableRow>
+          <TableRow displayBorder={false}>
             <TableHeaderColumn></TableHeaderColumn>
             {this.state.weeks.map((week, i) => (
               <TableHeaderColumn key={i}>
@@ -75,14 +101,14 @@ class TimeTableRow extends React.Component {
   }
 
   updateHeight() {
-    let h = window.innerHeight - 123;
+    let h = window.innerHeight * 0.93 - 64;
     let n = this.props.periods.length;
     this.setState({height: h / n});
   }
 
   render() {
     return (
-      <TableRow style={{height: this.state.height}}>
+      <TableRow displayBorder={false} style={{height: this.state.height}}>
         <TableHeaderColumn style={{height: this.state.height}}>
           {this.props.period}
         </TableHeaderColumn>
@@ -99,10 +125,11 @@ class TimeTableRow extends React.Component {
               return subject;
             }).filter(s => s.s.length).map((subject, j, subjects) => {
               let len = this.props.maxLength;
-              let width = innerWidth * 0.93 / this.props.weeks.length;
-              let height = this.state.height / subjects.length;
+              let width = innerWidth * 0.93 / this.props.weeks.length | 0;
+              let height = this.state.height / subjects.length | 0;
               let aspect = width / len / height;
               let display = 'table-row';
+              let color = subject.color;
               if (aspect > 0.7) {
                 display = 'table-cell';
                 width /= subjects.length;
@@ -111,18 +138,18 @@ class TimeTableRow extends React.Component {
               return (
                 <div key={j} style={{display}}>
                   <FlatButton
+                    className="timetable-subject"
                     style={{
                       width,
                       height,
-                      fontSize: Math.min(width / len, height / 3) | 0,
-                      display: 'table-cell',
-                      verticalAlign: 'middle',
-                      backgroundColor: subject.color,
-                      backgroundImage: 'linear-gradient(to right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.3))',
-                      WebkitTextStroke: `${Math.min(width / len, height / 3) / 40}px #333`,
-                      color: 'white',
-                      minWidth: 'none',
-                      lineHeight: 'initial',
+                      fontSize: Math.min(width / len, height * 0.3) | 0,
+                      backgroundColor: color.hsl(1, 0.5),
+                      backgroundImage: color.gradient(
+                        'to right',
+                        [0.9, 0.7],
+                        [0.9, 0.75]
+                      ),
+                      boxShadow: color.shadow(0, 0, 0, 1, 1, 0.4, true),
                     }}
                   >
                     {subject.label}

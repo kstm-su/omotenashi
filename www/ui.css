@@ -1,7 +1,7 @@
 main {
 	position: absolute;
-	top: 64px;
 	bottom: 0;
+	right: 0;
 	-ms-user-select: none;
 	-o-user-select: none;
 	-webkit-user-select: none;
@@ -21,7 +21,7 @@ main {
 
 .timetable th, .timetable td {
 	text-align: center !important;
-	border-left: 1px solid rgb(224, 224, 224);
+	box-shadow: 0 0 0 1px rgb(224, 224, 224) inset;
 	padding: 0 !important;
 	text-overflow: clip !important;
 	box-sizing: border-box;
@@ -30,9 +30,35 @@ main {
 .timetable th small, .timetable td small {
 	display: block;
 	font-size: 50% !important;
-	color: #666;
 }
 
 .timetable th:first-child {
 	width: 7%;
+}
+
+.timetable thead {
+	border: none !important;
+}
+
+.timetable thead tr {
+	height: 7% !important;
+}
+
+.timetable thead th {
+	vertical-align: bottom;
+	height: initial !important;
+	box-shadow: none;
+	border-right: 1px solid rgb(224, 224, 224);
+}
+
+.timetable-subject {
+	display: table-cell;
+	vertical-align: middle;
+	min-width: 0 !important;
+	line-height: initial !important;
+	border-radius: 0 !important;
+}
+
+.timetable td:not(:empty) {
+	border: none;
 }
