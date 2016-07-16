@@ -51,7 +51,16 @@ class TodoComponent extends React.Component{
     var hours = parseInt(minutes/60);
     var days = parseInt(hours/24);
     if(days > 1) return this.dateFormatting(targetTime);
-    return (days?String(days) + " days ":" ") + (hours%24?String(hours%24) + " hours ":" ") + (minutes%60?String(minutes%60) + " mintues ":" ") 
+	// returning
+	days = Math.abs(days);
+	hours = Math.abs(hours%24);
+	minutes = Math.abs(minutes%60);
+	var ret = "";
+	if(time < 0) ret += "Over ";
+	if(days) ret += String(days) + " days ";
+	if(hours) ret += String(hours) + " hours ";
+	if(minutes) ret += String(minutes) + " minutes ";
+	return ret;
   }
 
   timeUpdate() {
