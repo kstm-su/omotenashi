@@ -9,41 +9,16 @@ import {
 } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 
-import userData from './testdata.js';
+import {Hue} from './color';
 
-class Color {
-  constructor(hue) {
-    this.hue = hue;
-  }
-
-  hsl(saturation, lightness) {
-    return `hsl(${this.hue}, ${saturation * 100}%, ${lightness * 100}%)`;
-  }
-
-  gradient(angle, ...stops) {
-    return `linear-gradient(${angle}, ${stops.map(stop => {
-      return this.hsl(...stop);
-    })})`;
-  }
-
-  shadow(x, y, blur, spread, saturation, lightness, inset) {
-    let color = this.hsl(saturation, lightness);
-    return `${[x, y, blur, spread].map(length => {
-      let n = +length;
-      if (isNaN(n)) {
-        return length;
-      }
-      return n + 'px';
-    }).join(' ')} ${color}${inset ? ' inset' : ''}`;
-  }
-}
+import userData from './testdata';
 
 export default class TimeTable extends React.Component {
   componentWillMount() {
     this.setState({
       courses: userData.courses.map((course, i, courses) => {
         if (course.color == null) {
-          course.color = new Color(i * 360 / courses.length | 0);
+          course.color = new Hue(i * 360 / courses.length | 0);
         }
         return course;
       }),
