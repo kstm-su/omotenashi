@@ -1,6 +1,9 @@
 import React from 'react';
 import Radium from 'radium';
+import {Link} from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
+
+const RadiumLink = Radium(Link);
 
 @Radium
 export default class TimeTableCourse extends React.Component {
@@ -11,7 +14,13 @@ export default class TimeTableCourse extends React.Component {
     let height = this.props.height / this.props.courses.length;
     let aspect = width / len / height;
     let color = course.color;
-    let containerStyle = {display: 'table-row', ':hover': {opacity: 0.5}};
+    let containerStyle = {
+      display: 'table-row',
+      textDecoration: 'none',
+      ':hover': {
+        opacity: 0.5,
+      },
+    };
     let style = {
       width,
       height,
@@ -24,23 +33,21 @@ export default class TimeTableCourse extends React.Component {
       minWidth: 0,
       lineHeight: 'initial',
       borderRadius: 0,
-      ':hover': {
-        opacity: 0.5,
-      },
     };
     const locationStyle = {
       display: 'block',
       fontSize: '50%',
     };
     if (aspect > 0.7) {
-      style.display = 'table-cell';
-      width /= this.props.courses.length;
-      height = this.props.height;
+      console.log(aspect)
+      containerStyle.display = 'table-cell';
+      style.width /= this.props.courses.length;
+      style.height = this.props.height;
     }
     return (
-      <div style={containerStyle}>
+      <RadiumLink to={`/course/${course.id}`} style={containerStyle}>
         <FlatButton
-          href={`#/course/${course.id}`}
+          //href={`#/course/${course.id}`}
           style={style}
         >
           {course.label}
@@ -48,7 +55,7 @@ export default class TimeTableCourse extends React.Component {
             {course.schedule.location}
           </small>
         </FlatButton>
-      </div>
+      </RadiumLink>
     );
   }
 }

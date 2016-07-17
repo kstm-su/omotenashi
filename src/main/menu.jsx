@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import {Menu, MenuItem} from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
@@ -24,22 +25,41 @@ export default class MainMenu extends React.Component {
             ログイン
           </MenuItem>
           <Divider />
-          <MenuItem
-            href="#"
-            leftIcon={<ActionDateRange />}
+          <MenuLink
+            href="/"
+            leftIcon={ActionDateRange}
             onTouchTap={this.props.close}
           >
             時間割
-          </MenuItem>
-          <MenuItem
-            href="#events"
-            leftIcon={<ActionAssignment />}
+          </MenuLink>
+          <MenuLink
+            href="/events"
+            leftIcon={ActionAssignment}
             onTouchTap={this.props.close}
           >
             イベント一覧
-          </MenuItem>
+          </MenuLink>
         </Menu>
       </Drawer>
+    );
+  }
+}
+
+class MenuLink extends React.Component {
+  render() {
+    const style = {
+      color: 'black',
+      textDecoration: 'none',
+    };
+    return (
+      <Link to={this.props.href} style={style}>
+        <MenuItem
+          leftIcon={<this.props.leftIcon/>}
+          onTouchTap={this.props.onTouchTap}
+        >
+          {this.props.children}
+        </MenuItem>
+      </Link>
     );
   }
 }
