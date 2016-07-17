@@ -5,6 +5,7 @@ import Main from './';
 import TimeTable from '../timetable';
 import EventList from '../eventlist';
 import Course from '../course';
+import LoginForm from '../loginform';
 
 export default class AppRouter extends React.Component {
   render() {
@@ -14,6 +15,7 @@ export default class AppRouter extends React.Component {
           <IndexRoute component={TimeTable} />
           <Route path="events" component={EventList} />
           <Route path="course/:id" component={Course} />
+          <Route path="login" component={LoginForm} />
         </Route>
       </Router>
     );

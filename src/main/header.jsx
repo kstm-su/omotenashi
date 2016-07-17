@@ -21,7 +21,7 @@ export default class Header extends React.Component {
       style.height = '100%';
       leftIconStyle.display = 'none';
     }
-    let closable = !this.dialog && this.props.closable;
+    let closable = !this.props.dialog && this.props.closable;
     return (
       <AppBar
         title={this.props.title}
