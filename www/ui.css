@@ -52,7 +52,7 @@ main {
 }
 
 .timetable-course {
-	display: table-cell;
+	display: table-cell !important;
 	vertical-align: middle;
 	min-width: 0 !important;
 	line-height: initial !important;
