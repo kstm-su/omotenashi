@@ -15,6 +15,20 @@ import userData from '../testdata';
 
 export default class TimeTable extends React.Component {
   componentWillMount() {
+    this.loadUserData();
+    this.updateWindowSize();
+  }
+
+  componentDidMount() {
+    this.onresize = this.updateWindowSize.bind(this);
+    addEventListener('resize', this.onresize);
+  }
+
+  componentWillUnmount() {
+    removeEventListener('resize', this.onresize);
+  }
+
+  loadUserData() {
     this.setState({
       courses: userData.courses.map((course, i, courses) => {
         if (course.color == null) {
@@ -27,11 +41,22 @@ export default class TimeTable extends React.Component {
     });
   }
 
+  updateWindowSize() {
+    this.setState({
+      windowWidth: innerWidth,
+      windowHeight: innerHeight,
+    });
+  }
+
   render() {
+    let height = this.state.windowHeight * 0.93 - 64;
     return (
       <Table className="timetable">
         <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-          <TableRow displayBorder={false}>
+          <TableRow
+            displayBorder={false}
+            style={{height: this.state.windowHeight * 0.07}}
+          >
             <TableHeaderColumn></TableHeaderColumn>
             {this.state.weeks.map((week, i) => (
               <TableHeaderColumn key={i}>
@@ -51,6 +76,7 @@ export default class TimeTable extends React.Component {
               courses={this.state.courses.filter(course => {
                 return course.schedules.some(s => s.period === i);
               })}
+              height={height / this.state.periods.length}
               maxLength={this.state.courses.reduce((max, course) => {
                 return Math.max(max, course.label.length);
               }, 1)}
@@ -63,36 +89,17 @@ export default class TimeTable extends React.Component {
 }
 
 class TimeTableRow extends React.Component {
-  componentWillMount() {
-    this.updateHeight();
-  }
-
-  componentDidMount() {
-    this.onresize = this.updateHeight.bind(this);
-    addEventListener('resize', this.onresize);
-  }
-
-  componentWillUnmount() {
-    removeEventListener('resize', this.onresize);
-  }
-
-  updateHeight() {
-    let h = innerHeight * 0.93 - 64;
-    let n = this.props.periods.length;
-    this.setState({height: h / n});
-  }
-
   render() {
     return (
-      <TableRow displayBorder={false} style={{height: this.state.height}}>
-        <TableHeaderColumn style={{height: this.state.height}}>
+      <TableRow displayBorder={false} style={{height: this.props.height}}>
+        <TableHeaderColumn style={{height: this.props.height}}>
           {this.props.period}
         </TableHeaderColumn>
         {this.props.weeks.map((week, i) => (
           <TimeTableCell
             key={i}
             weeks={this.props.weeks}
-            height={this.state.height}
+            height={this.props.height}
           >
             {this.props.courses.map(course => {
               course.s = course.schedules.filter(s => {
@@ -102,14 +109,14 @@ class TimeTableRow extends React.Component {
             }).filter(s => s.s.length).map((course, j, courses) => {
               let len = this.props.maxLength;
               let width = innerWidth * 0.93 / this.props.weeks.length | 0;
-              let height = this.state.height / courses.length | 0;
+              let height = this.props.height / courses.length | 0;
               let aspect = width / len / height;
               let display = 'table-row';
               let color = course.color;
               if (aspect > 0.7) {
                 display = 'table-cell';
                 width /= courses.length;
-                height = this.state.height;
+                height = this.props.height;
               }
               return (
                 <div key={j} style={{display}}>
