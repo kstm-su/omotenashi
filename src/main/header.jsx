@@ -1,4 +1,5 @@
 import React from 'react';
+import {hashHistory} from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
@@ -6,21 +7,28 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
 export default class Header extends React.Component {
   closePage(e) {
-    history.back();
+    hashHistory.goBack();
   }
 
   render() {
-    const style = {
+    let style = {
       position: 'fixed',
       top: 0,
       textAlign: 'center',
     };
+    let leftIconStyle = {};
+    if (this.props.dialog) {
+      style.height = '100%';
+      leftIconStyle.display = 'none';
+    }
+    let closable = !this.dialog && this.props.closable;
     return (
       <AppBar
         title={this.props.title}
-        iconElementRight={this.props.closeButton ? <CloseButton /> : null}
+        iconElementRight={closable ? <CloseButton /> : null}
         onLeftIconButtonTouchTap={this.props.openMainMenu}
         style={style}
+        iconStyleLeft={leftIconStyle}
       />
     );
   }

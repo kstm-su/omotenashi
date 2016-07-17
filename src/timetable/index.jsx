@@ -48,6 +48,14 @@ export default class TimeTable extends React.Component {
     });
   }
 
+  static title(params) {
+    return '時間割';
+  }
+
+  static closable(params) {
+    return false;
+  }
+
   render() {
     let width = this.state.windowWidth * 0.93;
     let height = this.state.windowHeight * 0.93 - 64;

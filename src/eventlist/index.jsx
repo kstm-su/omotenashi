@@ -11,6 +11,10 @@ import {
 import userData from '../testdata';
 
 export default class EventList extends React.Component {
+  static get title() {
+    return 'イベント一覧';
+  }
+
   //FIXME: userDataを使っている
   getEventData() {
     this.setState({events: userData.events});

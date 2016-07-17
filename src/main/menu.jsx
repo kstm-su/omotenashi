@@ -15,9 +15,6 @@ export default class MainMenu extends React.Component {
       width: '100%',
       display: 'inline-block',
     };
-    const itemStyle = {
-      cursor: 'pointer',
-    };
     return (
       <Drawer
         docked={false}
@@ -30,26 +27,22 @@ export default class MainMenu extends React.Component {
           autoWidth={false}
           onItemTouchTap={this.props.close}
         >
-          <MenuItem
-            leftIcon={<ActionAccountCircle />}
-            onTouchTap={this.props.openLoginForm}
-            style={itemStyle}
-          >
-            ログイン
-          </MenuItem>
+          <MenuLink
+            href="/login"
+            leftIcon={ActionAccountCircle}
+            label="ログイン"
+          />
           <Divider />
           <MenuLink
             href="/"
             leftIcon={ActionDateRange}
-          >
-            時間割
-          </MenuLink>
+            label="時間割"
+          />
           <MenuLink
             href="/events"
             leftIcon={ActionAssignment}
-          >
-            イベント一覧
-          </MenuLink>
+            label="イベント一覧"
+          />
         </Menu>
       </Drawer>
     );
@@ -68,7 +61,7 @@ class MenuLink extends React.Component {
           leftIcon={<this.props.leftIcon/>}
           onTouchTap={this.props.onTouchTap}
         >
-          {this.props.children}
+          {this.props.label}
         </MenuItem>
       </Link>
     );

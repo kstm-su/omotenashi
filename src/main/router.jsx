@@ -11,13 +11,9 @@ export default class AppRouter extends React.Component {
     return (
       <Router history={hashHistory}>
         <Route path="/" component={Main}>
-          <IndexRoute
-            component={TimeTable}
-            title="時間割"
-            closeButton={false}
-          />
-          <Route path="events" component={EventList} title="イベント一覧" />
-          <Route path="course/:id" component={Course} title="授業ページ" />
+          <IndexRoute component={TimeTable} />
+          <Route path="events" component={EventList} />
+          <Route path="course/:id" component={Course} />
         </Route>
       </Router>
     );

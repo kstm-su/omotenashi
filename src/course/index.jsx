@@ -15,6 +15,12 @@ export default class Course extends React.Component {
     this.periods = userData.periods;
   }
 
+  static title(params) {
+    /* TODO: userData置き換える */
+    let course = userData.courses.filter(c => c.id == params.id)[0];
+    return course.title;
+  }
+
   render() {
     let course = this.courses.filter(c => c.id == this.props.params.id).pop();
     return(

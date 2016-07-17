@@ -40,15 +40,26 @@ export default class Main extends React.Component {
   }
 
   render() {
-    let children = React.cloneElement(this.props.children);
-    let title = children.props.route.title;
-    let closeButton = children.props.route.closeButton !== false;
+    let children = this.props.children;
+    let title = children.type.title || '';
+    let dialog = children.type.dialog || false;
+    let closable = children.type.closable || true;
+    if (typeof title === 'function') {
+      title = title(this.props.params);
+    }
+    if (typeof dialog === 'function') {
+      dialog = dialog(this.props.params);
+    }
+    if (typeof closable === 'function') {
+      closable = closable(this.props.params);
+    }
     return (
       <MuiThemeProvider>
         <div>
           <Header
             title={title}
-            closeButton={closeButton}
+            dialog={dialog}
+            closable={closable}
             openMainMenu={this.openMainMenu.bind(this)}
           />
           <MainMenu
