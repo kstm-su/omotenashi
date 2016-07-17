@@ -1,7 +1,4 @@
 main {
-	position: absolute;
-	bottom: 0;
-	right: 0;
 	-ms-user-select: none;
 	-o-user-select: none;
 	-webkit-user-select: none;
@@ -40,12 +37,7 @@ main {
 	border: none !important;
 }
 
-.timetable thead tr {
-	height: 7% !important;
-}
-
 .timetable thead th {
-	vertical-align: bottom;
 	height: initial !important;
 	box-shadow: none;
 	border-right: 1px solid rgb(224, 224, 224);

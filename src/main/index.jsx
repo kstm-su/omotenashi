@@ -62,10 +62,21 @@ export default class Main extends React.Component {
             open={this.openLoginForm.bind(this)}
             close={this.closeLoginForm.bind(this)}
           />
-          <main>{children}</main>
+          <MainContainer>{children}</MainContainer>
         </div>
       </MuiThemeProvider>
     );
+  }
+}
+
+class MainContainer extends React.Component {
+  render() {
+    const style = {
+      position: 'absolute',
+      bottom: 0,
+      right: 0,
+    };
+    return <main style={style}>{this.props.children}</main>;
   }
 }
 
