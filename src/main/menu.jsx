@@ -11,16 +11,29 @@ import {
 
 export default class MainMenu extends React.Component {
   render() {
+    const style = {
+      width: '100%',
+      display: 'inline-block',
+    };
+    const itemStyle = {
+      cursor: 'pointer',
+    };
     return (
       <Drawer
         docked={false}
         open={this.props.enable}
         onRequestChange={open => this.props[open ? 'open' : 'close']()}
       >
-        <Menu>
+        <Menu
+          style={style}
+          listStyle={style}
+          autoWidth={false}
+          onItemTouchTap={this.props.close}
+        >
           <MenuItem
             leftIcon={<ActionAccountCircle />}
             onTouchTap={this.props.openLoginForm}
+            style={itemStyle}
           >
             ログイン
           </MenuItem>
@@ -28,14 +41,12 @@ export default class MainMenu extends React.Component {
           <MenuLink
             href="/"
             leftIcon={ActionDateRange}
-            onTouchTap={this.props.close}
           >
             時間割
           </MenuLink>
           <MenuLink
             href="/events"
             leftIcon={ActionAssignment}
-            onTouchTap={this.props.close}
           >
             イベント一覧
           </MenuLink>
