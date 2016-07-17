@@ -16,13 +16,17 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
+          plugins: [
+            'transform-class-properties',
+            'syntax-decorators',
+          ],
+          presets: ['es2015', 'react'],
+        },
+      },
+    ],
   },
   devServer: {
-    contentBase: './www',
-    port: 8080,
+     contentBase: './www',
+     port: 8080,
   },
 };
