@@ -10,12 +10,17 @@ export default class Header extends React.Component {
   }
 
   render() {
+    const style = {
+      position: 'fixed',
+      top: 0,
+      textAlign: 'center',
+    };
     return (
       <AppBar
         title={this.props.title}
         iconElementRight={this.props.closeButton ? <CloseButton /> : null}
         onLeftIconButtonTouchTap={this.props.openMainMenu}
-        className="headerbar"
+        style={style}
       />
     );
   }
