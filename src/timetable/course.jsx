@@ -39,7 +39,6 @@ export default class TimeTableCourse extends React.Component {
       fontSize: '50%',
     };
     if (aspect > 0.7) {
-      console.log(aspect)
       containerStyle.display = 'table-cell';
       style.width /= this.props.courses.length;
       style.height = this.props.height;
