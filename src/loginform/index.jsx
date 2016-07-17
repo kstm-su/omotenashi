@@ -42,10 +42,10 @@ export default class LoginForm extends React.Component {
     ];
     return (
       <Dialog
-        title="ログイン"
         open={this.state.open}
         actions={actions}
         modal={true}
+        autoScrollBodyContent={true}
         onRequestClose={open => this.setState({open})}
         contentStyle={{maxWidth: 500}}
         overlayStyle={{background: 'transparent'}}
