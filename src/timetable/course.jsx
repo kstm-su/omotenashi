@@ -17,8 +17,9 @@ export default class TimeTableCourse extends React.Component {
     let containerStyle = {
       display: 'table-row',
       textDecoration: 'none',
+      transition: 'opacity 200ms',
       ':hover': {
-        opacity: 0.5,
+        opacity: 0.7,
       },
     };
     let style = {
@@ -27,7 +28,7 @@ export default class TimeTableCourse extends React.Component {
       fontSize: Math.min(width / len, height * 0.3),
       backgroundColor: color.hsl(1, 0.5),
       backgroundImage: color.gradient('to right', [0.9, 0.7], [0.9, 0.75]),
-      boxShadow: color.shadow(0, 0, 0, 1, 1, 0.4, true),
+      boxShadow: color.shadow(0, 0, 1, 1, 1, 0.4, true),
       display: 'table-cell',
       verticalAlign: 'middle',
       minWidth: 0,
@@ -45,10 +46,7 @@ export default class TimeTableCourse extends React.Component {
     }
     return (
       <RadiumLink to={`/course/${course.id}`} style={containerStyle}>
-        <FlatButton
-          //href={`#/course/${course.id}`}
-          style={style}
-        >
+        <FlatButton style={style}>
           {course.label}
           <small style={locationStyle}>
             {course.schedule.location}
