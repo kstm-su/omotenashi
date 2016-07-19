@@ -37,9 +37,7 @@ export default class EventList extends React.Component {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {this.state.events.map(event => {
-              return <EventComponent key={event.id} event={event} />;
-            })}
+            {this.state.events.map(event => <EventComponent key={event.id} event={event} />)}
           </TableBody>
         </Table>
       </div>
