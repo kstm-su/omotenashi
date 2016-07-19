@@ -4,14 +4,6 @@ import {
   CardTitle, 
   CardText
 } from 'material-ui/Card';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui/Table';
 
 import userData from '../testdata';
 import EventList from '../eventlist';
