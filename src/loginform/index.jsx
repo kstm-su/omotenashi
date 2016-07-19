@@ -48,6 +48,7 @@ export default class LoginForm extends React.Component {
         autoScrollBodyContent={true}
         onRequestClose={open => this.setState({open})}
         contentStyle={{maxWidth: 500}}
+        actionsContainerStyle={{borderTop: 0}}
         overlayStyle={{background: 'transparent'}}
       >
         <TextField
