@@ -66,8 +66,10 @@ class MainContainer extends React.Component {
   render() {
     const style = {
       position: 'absolute',
-      bottom: 0,
+      left: 0,
+      top: 64,
       right: 0,
+      bottom: 0,
     };
     return <main style={style}>{this.props.children}</main>;
   }
