@@ -7,16 +7,19 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
+import { connect } from 'react-redux';
 
 import TimeTableCourse from './course';
 import {Hue} from '../utils/color';
 
 import userData from '../testdata';
 
+@connect()
 export default class TimeTable extends React.Component {
   componentWillMount() {
     this.loadUserData();
     this.updateWindowSize();
+	this.props.dispatch({type: 'timetable'});
   }
 
   componentDidMount() {
