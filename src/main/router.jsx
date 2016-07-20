@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router, Route, IndexRoute, hashHistory} from 'react-router';
 
-import Main from './';
+import Main from './main';
 import TimeTable from '../timetable';
 import EventList from '../eventlist';
 import Course from '../course';
