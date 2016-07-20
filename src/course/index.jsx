@@ -8,6 +8,7 @@ import {
 } from 'material-ui/svg-icons';
 
 import userData from '../testdata';
+import EventList from '../eventlist';
 
 export default class Course extends Component {
   static title = '授業情報';
@@ -20,9 +21,13 @@ export default class Course extends Component {
     let course = this.state.courses.filter(c => {
       return c.id == this.props.params.id;
     }).shift();
+    let events = this.state.events.filter(event => {
+      return event.courseid == this.props.params.id;
+    });
     return (
       <div>
         <CourseOverview data={this.state} course={course} />
+        <EventList event={events} />
       </div>
     );
   }

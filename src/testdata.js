@@ -181,15 +181,24 @@ export default {
     {
       id: 1,
       title: '課題1',
+      courseid: [3000, 4000],
+      otherpubeventid: [],
+      startingtime: '2016-07-14T00:00:00.000Z',
       deadline: '2016-07-15T00:00:00.000Z',
     }, {
       id: 2,
       title: '課題2',
+      courseid: [9000],
+      otherpubeventid: [],
+      startingtime: '2016-07-14T00:00:00.000Z',
       deadline: '2016-07-18T00:00:00.000Z',
     }, {
       id: 3,
       title: '課題3',
-      deadline: '2016-07-120T00:00:00.000Z',
+      courseid: [],
+      otherpubeventid: [],
+      startingtime: '2016-07-14T00:00:00.000Z',
+      deadline: '2016-07-12T00:00:00.000Z',
     },
   ],
 };
