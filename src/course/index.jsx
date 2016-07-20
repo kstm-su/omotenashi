@@ -6,6 +6,7 @@ import {
 } from 'material-ui/Card';
 
 import userData from '../testdata';
+import EventList from '../eventlist';
 
 export default class Course extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class Course extends React.Component {
     this.courses = userData.courses;
     this.weeks = userData.weeks;
     this.periods = userData.periods;
+	this.events = userData.events;
   }
 
   static title(params) {
@@ -36,6 +38,7 @@ export default class Course extends React.Component {
             return `${week} ${period}`;
           }).join(', ')}
         </CardText>
+		<EventList event={this.events.filter((a) => a.courseid.indexOf(Number(this.props.params.id)) !== -1)} />
       </Card>
     );
   }
