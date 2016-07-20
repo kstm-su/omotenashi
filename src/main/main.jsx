@@ -20,12 +20,8 @@ export default class Main extends React.Component {
 
   render() {
     let children = this.props.children;
-    let title = children.type.title || '';
     let dialog = children.type.dialog || false;
     let closable = children.type.closable || true;
-    if (typeof title === 'function') {
-      title = title(this.props.params);
-    }
     if (typeof dialog === 'function') {
       dialog = dialog(this.props.params);
     }
@@ -36,7 +32,6 @@ export default class Main extends React.Component {
       <MuiThemeProvider>
         <div>
           <Header
-            title={title}
             dialog={dialog}
             closable={closable}
             openMainMenu={this.openMainMenu.bind(this)}

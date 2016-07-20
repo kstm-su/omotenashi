@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
-import App from './app';
+import App from '../redux/app';
 
 import { Provider } from 'react-redux';
 import configureStore from '../redux/store'
