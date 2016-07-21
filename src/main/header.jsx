@@ -5,11 +5,6 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 
-import { connect } from 'react-redux';
-
-@connect(state => ({
-	title: state.title
-}))
 export default class Header extends React.Component {
   closePage(e) {
     hashHistory.goBack();
@@ -27,7 +22,6 @@ export default class Header extends React.Component {
       leftIconStyle.display = 'none';
     }
     let closable = !this.props.dialog && this.props.closable;
-
     return (
       <AppBar
         title={this.props.title}

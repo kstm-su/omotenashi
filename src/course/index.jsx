@@ -10,30 +10,24 @@ import {
 import userData from '../testdata';
 import EventList from '../eventlist';
 
-
-import { connect } from 'react-redux';
-@connect()
 export default class Course extends Component {
-	
+  static title = '授業情報';
+
   componentWillMount() {
     this.setState(userData);
-	this.props.dispatch({type: 'course'});
-  }
-  componentDidMount(){
-    let events = this.state.events.filter(event => {
-		return event.courseid.findIndex((a)=> {return Number(this.props.params.id) === a}) !== -1;
-    });
-	this.setState({courseEvents: events})
   }
 
   render() {
     let course = this.state.courses.filter(c => {
       return c.id == this.props.params.id;
     }).shift();
+    let events = this.state.events.filter(event => {
+      return event.courseid == this.props.params.id;
+    });
     return (
       <div>
         <CourseOverview data={this.state} course={course} />
-        <EventList event={this.state.courseEvents} />
+        <EventList event={events} />
       </div>
     );
   }

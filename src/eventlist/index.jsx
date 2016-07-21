@@ -7,20 +7,17 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
-import { connect } from 'react-redux';
 
 import userData from '../testdata';
 import EventComponent from '../oneevent/oneevent_oneline.jsx';
 
-@connect()
 export default class EventList extends React.Component {
+  static get title() {
+    return 'イベント一覧';
+  }
 
   //FIXME: userDataを使っている
   getEventData() {
-	console.log(this.props);
-    if (!this.props.event) {
-		this.props.dispatch({type: 'eventlist'});
-	}
     this.setState({events: this.props.event || userData.events});
   }
 
