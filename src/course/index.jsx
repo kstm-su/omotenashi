@@ -10,14 +10,11 @@ import {
 import userData from '../testdata';
 import EventList from '../eventlist';
 
-
-import { connect } from 'react-redux';
-@connect()
 export default class Course extends Component {
-	
+  static title = '授業情報';
+
   componentWillMount() {
     this.setState(userData);
-	this.props.dispatch({type: 'course'});
   }
 
   render() {
