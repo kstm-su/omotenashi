@@ -19,18 +19,21 @@ export default class Course extends Component {
     this.setState(userData);
 	this.props.dispatch({type: 'course'});
   }
+  componentDidMount(){
+    let events = this.state.events.filter(event => {
+		return event.courseid.findIndex((a)=> {return Number(this.props.params.id) === a}) !== -1;
+    });
+	this.setState({courseEvents: events})
+  }
 
   render() {
     let course = this.state.courses.filter(c => {
       return c.id == this.props.params.id;
     }).shift();
-    let events = this.state.events.filter(event => {
-      return event.courseid == this.props.params.id;
-    });
     return (
       <div>
         <CourseOverview data={this.state} course={course} />
-        <EventList event={events} />
+        <EventList event={this.state.courseEvents} />
       </div>
     );
   }

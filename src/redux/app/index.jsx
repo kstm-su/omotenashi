@@ -5,7 +5,7 @@ import App from '../../main/app';
 import * as Action from '../action';
 
 function mapStateToProps(state) {
-	return state;
+	return {state: state.state};
 }
 
 function mapDispatchToProps(dispatch) {

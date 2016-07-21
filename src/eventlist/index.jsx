@@ -17,6 +17,7 @@ export default class EventList extends React.Component {
 
   //FIXME: userDataを使っている
   getEventData() {
+	console.log(this.props);
     if (!this.props.event) {
 		this.props.dispatch({type: 'eventlist'});
 	}
