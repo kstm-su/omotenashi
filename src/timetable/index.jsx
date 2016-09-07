@@ -33,6 +33,7 @@ export default class TimeTable extends React.Component {
       courses: userData.courses.map((course, i, courses) => {
         if (course.color == null) {
           course.color = new Hue(i * 360 / courses.length | 0);
+		  course.fontColor = new Hue((i+courses.length/2) * 360/courses.length | 0);
         }
         return course;
       }),
@@ -177,7 +178,7 @@ class TimeTableCell extends React.Component {
     let style = {
       textAlign: 'center',
       boxShadow: '0 0 0 1px rgb(224, 224, 224) inset',
-      padding: 0,
+      padding: '0px',
       textOverflow: 'clip',
       boxSizing: 'border-box',
       height: this.props.height,
