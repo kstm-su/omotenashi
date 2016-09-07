@@ -14,7 +14,6 @@ export default class TimeTableCourse extends React.Component {
     let height = this.props.height / this.props.courses.length;
     let aspect = width / len / height;
     let color = course.color;
-	let fontColor = course.fontColor;
     let containerStyle = {
       display: 'table-row',
       textDecoration: 'none',
@@ -26,11 +25,10 @@ export default class TimeTableCourse extends React.Component {
     let style = {
       width,
       height,
-      fontSize: Math.min(width / len, height * 0.3) -1,
-	  fontFamily: "'Meiryo',Roboto, sans-serif",
-      backgroundColor: color.hsl(1, 0.95),
-      /*backgroundImage: color.gradient('to right', [0.9, 0.7], [0.9, 0.75]),*/
-      boxShadow: color.shadow(3, -1, 0, 0, 1, 0.4, true),
+      fontSize: Math.min(width / len, height * 0.3),
+      backgroundColor: color.hsl(1, 0.5),
+      backgroundImage: color.gradient('to right', [0.9, 0.7], [0.9, 0.75]),
+      boxShadow: color.shadow(0, 0, 1, 1, 1, 0.4, true),
       display: 'table-cell',
       verticalAlign: 'middle',
       minWidth: 0,
