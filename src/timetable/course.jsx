@@ -26,10 +26,9 @@ export default class TimeTableCourse extends React.Component {
     let style = {
       width,
       height,
-      fontSize: Math.min(width / len, height * 0.3) -1,
-	  fontFamily: "'Meiryo',Roboto, sans-serif",
+      fontSize: Math.min(width / len, height * 0.3) * 0.8,
+	  fontFamily: "'Hiragino Kaku Gothic ProN', 'Meiryo',Roboto, sans-serif",
       backgroundColor: color.hsl(1, 0.95),
-      /*backgroundImage: color.gradient('to right', [0.9, 0.7], [0.9, 0.75]),*/
       boxShadow: color.shadow(3, -1, 0, 0, 1, 0.4, true),
       display: 'table-cell',
       verticalAlign: 'middle',
