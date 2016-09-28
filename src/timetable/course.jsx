@@ -14,7 +14,7 @@ export default class TimeTableCourse extends React.Component {
     let height = this.props.height / this.props.courses.length;
     let aspect = width / len / height;
     let color = course.color;
-	let fontColor = course.fontColor;
+    let fontColor = course.fontColor;
     let containerStyle = {
       display: 'table-row',
       textDecoration: 'none',
